@@ -133,10 +133,12 @@
   <ItemGroup>
     <ClInclude Include="DllHeader.h" />
     <ClInclude Include="PI.h" />
+    <ClInclude Include="transformations.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.c" />
     <ClCompile Include="PI.c" />
+    <ClCompile Include="transformations.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
