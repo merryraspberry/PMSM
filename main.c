@@ -3,7 +3,8 @@
 
 
 #define x_d aState->inputs[0]
-#define x_q aState->inputs[1]
+#define x_w aState->inputs[1]
+#define i_q aState->inputs[2]
 
 #define y_d aState->outputs[0]
 #define y_q aState->outputs[1]
@@ -29,7 +30,7 @@ float Imin = 0;
 
 DLLEXPORT void plecsSetSizes(struct SimulationSizes* aSizes)
 {
-   aSizes->numInputs = 2;
+   aSizes->numInputs = 3;
    aSizes->numOutputs = 2;
    aSizes->numStates = 2;
    aSizes->numParameters = 10; //number of user parameters passed in
@@ -59,8 +60,9 @@ DLLEXPORT void plecsStart(struct SimulationState* aState)
 }
 void main(struct SimulationState* aState) {
 
+	PI_Calc(&PI_w, x_w);
 	PI_Calc(&PI_i_d, x_d);
-	PI_Calc(&PI_i_q, x_q);
+	PI_Calc(&PI_i_q, PI_w.y - i_q );
 }
 
 

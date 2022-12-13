@@ -25,12 +25,12 @@ void PI_Calc(struct PI *pid, float x) {
 
 	pid->y = (pid->x * pid->kp) + ((pid->x * pid->ki * pid->Ts) / 2) - (pid->x1 * pid->kp) + ((pid->x1 * pid->ki * pid->Ts) / 2) + pid->y1;
 
-	//if(pid->y>pid->max){
-	//	pid->y = pid->max;
-	//	}
-	//if(pid->y<pid->min){
-	//	pid->y = pid->min;
-	//	}
+	if(pid->y>pid->max){
+		pid->y = pid->max;
+		}
+	if(pid->y<pid->min){
+		pid->y = pid->min;
+		}
 
 	pid->x1 = pid->x;
 	pid->y1 = pid->y;
