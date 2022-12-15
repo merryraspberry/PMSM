@@ -1,7 +1,9 @@
 #include "DllHeader.h"
 #include "PI.h"
 #include "transformations.h"
+#include "delay.h"
 #include "math.h"
+
 #define pi 3.141516
 
 #define A_in aState->inputs[0]
@@ -63,7 +65,11 @@ DLLEXPORT void plecsStart(struct SimulationState* aState)
 	PI_Init(&PI_w, kp_w, ki_w, Imin, Imax, Ts);
 	PI_Init(&PI_i_d, kp_d, ki_d, -sat, sat, Ts);
 	PI_Init(&PI_i_q, kp_q, ki_q, -sat, sat, Ts);
+
 	ABCdqInit(&ABCdq);
+
+	delayInit(&delay1);
+
 	dqABCInit(&dqABC);
 
 	
@@ -78,7 +84,9 @@ void main(struct SimulationState* aState) {
 	PI_Calc(&PI_i_d, id_ref - ABCdq.d);
 	PI_Calc(&PI_i_q, PI_w.y - ABCdq.q );
 
-	dqABCCalc(&dqABC, PI_i_d.y, PI_i_q.y, fi);
+	delayCalc(&delay1, PI_i_d.y, PI_i_q.y);
+
+	dqABCCalc(&dqABC,delay1.d_out, delay1.q_out, fi);
 }
 
 

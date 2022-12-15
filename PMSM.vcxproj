@@ -131,11 +131,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="delay.h" />
     <ClInclude Include="DllHeader.h" />
     <ClInclude Include="PI.h" />
     <ClInclude Include="transformations.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="delay.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="PI.c" />
     <ClCompile Include="transformations.c" />
