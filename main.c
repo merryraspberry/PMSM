@@ -74,7 +74,7 @@ void main(struct SimulationState* aState) {
 	
 	ABCdqCalc(&ABCdq, A_in, B_in, C_in, fi);
 
-	PI_Calc(&PI_w, w_ref-wm);
+	PI_Calc(&PI_w, w_ref - wm);
 	PI_Calc(&PI_i_d, id_ref - ABCdq.d);
 	PI_Calc(&PI_i_q, PI_w.y - ABCdq.q );
 
